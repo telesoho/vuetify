@@ -81,11 +81,10 @@ export const VAutocomplete = genericComponent<new <T>() => {
     const isPristine = ref(true)
     const menu = ref(false)
     const { items } = useItems(props)
-    const search = useProxiedModel(props, 'search', '')
+    const search = useProxiedModel(props, 'search')
     const model = useProxiedModel(
       props,
       'modelValue',
-      [],
       v => wrapInArray(v || []),
       (v: any) => props.multiple ? v : v[0]
     )

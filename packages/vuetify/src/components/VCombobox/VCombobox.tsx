@@ -88,7 +88,6 @@ export const VCombobox = genericComponent<new <T>() => {
     const model = useProxiedModel(
       props,
       'modelValue',
-      [],
       v => wrapInArray(v || []),
       (v: any) => props.multiple ? v : v[0]
     )
