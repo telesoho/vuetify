@@ -257,6 +257,7 @@ export const VSelectionControl = genericComponent<new <T>() => {
                 type={ type }
                 value={ trueValue.value }
                 name={ group?.name.value ?? props.name }
+                checked={ model.value }
                 aria-checked={ type === 'checkbox' ? model.value : undefined }
                 { ...attrs }
               />
