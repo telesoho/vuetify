@@ -18,8 +18,8 @@ import type { IconOptions } from '@/composables/icons'
 import type { LocaleAdapter, LocaleOptions } from '@/composables/locale'
 import type { RtlOptions } from '@/composables/rtl'
 import type { DefaultsOptions } from '@/composables/defaults'
-import { createDate, createDateAdapter, DateAdapterSymbol, DateSymbol } from './composables/date'
-import type { IUtils } from '@date-io/core/IUtils'
+import { DateAdapterSymbol } from './composables/date'
+import type { DateAdapter } from './adapters/date-adapter'
 
 export * from './composables'
 
@@ -33,7 +33,7 @@ export interface VuetifyOptions {
   icons?: IconOptions
   locale?: (LocaleOptions & RtlOptions) | (LocaleAdapter & RtlOptions)
   date?: {
-    adapter: IUtils<any>
+    adapter: DateAdapter<any>
   }
 }
 
@@ -75,7 +75,7 @@ export const createVuetify = (options: VuetifyOptions = {}) => {
     const { adapter, rootInstance } = createLocaleAdapter(app, options?.locale)
     app.provide(LocaleAdapterSymbol, adapter)
     app.provide(RtlSymbol, createRtl(rootInstance, options?.locale))
-    app.provide(DateAdapterSymbol, createDateAdapter(options?.date))
+    app.provide(DateAdapterSymbol, options?.date)
 
     // Vue's inject() can only be used in setup
     function inject (this: ComponentPublicInstance, key: InjectionKey<any> | string) {

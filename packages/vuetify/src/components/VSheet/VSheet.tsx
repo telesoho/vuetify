@@ -13,21 +13,25 @@ import { makeThemeProps, provideTheme } from '@/composables/theme'
 
 // Utilities
 import { toRef } from 'vue'
-import { defineComponent } from '@/util'
+import { defineComponent, propsFactory } from '@/util'
+
+export const makeVSheetProps = propsFactory({
+  color: String,
+
+  ...makeBorderProps(),
+  ...makeDimensionProps(),
+  ...makeElevationProps(),
+  ...makePositionProps(),
+  ...makeRoundedProps(),
+  ...makeTagProps(),
+  ...makeThemeProps(),
+})
 
 export const VSheet = defineComponent({
   name: 'VSheet',
 
   props: {
-    color: String,
-
-    ...makeBorderProps(),
-    ...makeDimensionProps(),
-    ...makeElevationProps(),
-    ...makePositionProps(),
-    ...makeRoundedProps(),
-    ...makeTagProps(),
-    ...makeThemeProps(),
+    ...makeVSheetProps(),
   },
 
   setup (props, { slots }) {
