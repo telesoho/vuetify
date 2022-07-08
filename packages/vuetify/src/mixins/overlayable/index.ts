@@ -160,7 +160,7 @@ export default Vue.extend<Vue & Toggleable & Stackable & options>().extend({
       ((['auto', 'scroll'].includes(style.overflowX!)) && el.scrollWidth > el.clientWidth)
     },
     shouldScroll (el: Element, e: WheelEvent): boolean {
-      if (el.hasAttribute('data-app')) return false
+      if ('getAttribute' in el && el.hasAttribute('data-app')) return false
 
       const dir = e.shiftKey || e.deltaX ? 'x' : 'y'
       const delta = dir === 'y' ? e.deltaY : e.deltaX || e.deltaY
